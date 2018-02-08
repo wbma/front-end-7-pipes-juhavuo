@@ -24,8 +24,10 @@ export class FrontComponent implements OnInit {
   };
 
   imagefiles: any;
-  arrayLength = 0;
-  textToPrint = '';
+  baseurl = ' http://media.mw.metropolia.fi/wbma/uploads/';
+  srcforimage = this.baseurl;
+  // arrayLength = 0;
+  // textToPrint = '';
 
   constructor(private mediaService: MediaService, private router: Router) {
   }
@@ -34,10 +36,11 @@ export class FrontComponent implements OnInit {
     if (localStorage.getItem('token') !== null) {
       this.mediaService.getUserData().subscribe(response => {
         console.log('Welcome ' + response ['full_name']);
-        this.mediaService.getNewMediaFiles().subscribe(response2 => {
+        this.mediaService.getNewMediaFiles(30, 10).subscribe(response2 => {
           console.log(response2);
           if (response2 !== undefined || response2 !== null) {
             this.imagefiles = response2;
+            /*
             if (this.imagefiles !== null) {
               this.arrayLength = this.imagefiles.length;
               let i = 0;
@@ -45,7 +48,7 @@ export class FrontComponent implements OnInit {
                 this.textToPrint += this.imagefiles[i].time_added + ',\n';
               }
               console.log('i: ' + i);
-            }
+            }*/
           } else if (response2 === null) {
             console.log('null');
           } else {

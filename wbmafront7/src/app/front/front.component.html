@@ -1,1 +1,9 @@
 <p>{{textToPrint}}</p>
+<ul>
+  <li *ngFor = "let imagefile of imagefiles">
+      <h3>Title: {{imagefile.title}}</h3>
+      <p>Description: {{imagefile.description}}</p>
+      <p>{{baseurl}}{{imagefile.filename}}</p>
+    <img [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (imagefile.filename)"/>
+  </li>
+</ul>
