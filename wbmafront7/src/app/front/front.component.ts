@@ -36,7 +36,7 @@ export class FrontComponent implements OnInit {
     if (localStorage.getItem('token') !== null) {
       this.mediaService.getUserData().subscribe(response => {
         console.log('Welcome ' + response ['full_name']);
-        this.mediaService.getNewMediaFiles(30, 10).subscribe(response2 => {
+        this.mediaService.getNewMediaFiles(0, 10).subscribe(response2 => {
           console.log(response2);
           if (response2 !== undefined || response2 !== null) {
             this.imagefiles = response2;
